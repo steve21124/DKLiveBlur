@@ -6,4 +6,5 @@ Pod::Spec.new do |s|
   s.source_files = 'LiveBlur/DKLiveBLur/**/*.{h,m}'                                         # 5
   s.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/DKLiveBLur"' }
   s.requires_arc = true
+  s.dependency 'Accelerate'
 end
