@@ -5,4 +5,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => 'git://github.com/steve21124/DKLiveBlur.git' }      # 4
   s.source_files = 'LiveBlur/DKLiveBLur/**/*.{h,m}'                                         # 5
   s.xcconfig  =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/LiveBlur/DKLiveBLur"' }
+  s.requires_arc = true
 end
