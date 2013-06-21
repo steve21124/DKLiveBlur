@@ -20,7 +20,7 @@
 
 @synthesize originalImage = _originalImage;
 @synthesize backgroundImageView = _backgroundImageView;
-@synthesize tableView = _tableView;
+@synthesize scrollView = _scrollView;
 @synthesize initialBlurLevel = _initialBlurLevel;
 @synthesize backgroundGlassView = _backgroundGlassView;
 @synthesize initialGlassLevel = _initialGlassLevel;
@@ -50,7 +50,6 @@
         _backgroundGlassView.backgroundColor = kDKBlurredBackgroundDefaultGlassColor;
                 
         [self addSubview: _backgroundGlassView];
-
     }
     return self;
 }
@@ -60,12 +59,12 @@
     _backgroundGlassView.backgroundColor = glassColor;
 }
 
-- (void)setTableView:(UITableView *)tableView {
-    [_tableView removeObserver: self forKeyPath: @"contentOffset"];
+- (void)setScrollView:(UIScrollView *)scrollView {
+    [_scrollView removeObserver: self forKeyPath: @"contentOffset"];
     
-	_tableView = tableView;
+	_scrollView = scrollView;
 	
-    [_tableView addObserver: self forKeyPath: @"contentOffset" options: 0 context: nil];
+    [_scrollView addObserver: self forKeyPath: @"contentOffset" options: 0 context: nil];
 }
 
 - (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur {
@@ -147,7 +146,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             self.backgroundImageView.alpha = 0.0;
-            self.backgroundImageView.image = blurredImage;            
+            self.backgroundImageView.image = blurredImage;
         });
     });
     
@@ -157,7 +156,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary *)change context:(void *)context {
     
-    self.backgroundImageView.alpha = self.tableView.contentOffset.y / (2 * self.frame.size.height / 3);
+    self.backgroundImageView.alpha = self.scrollView.contentOffset.y / (2 * self.frame.size.height / 3);
     
     if (self.isGlassEffectOn == YES) {
         self.backgroundGlassView.alpha = MAX(0.0, MIN(self.backgroundImageView.alpha - self.initialGlassLevel, self.initialGlassLevel));
