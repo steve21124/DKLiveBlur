@@ -40,6 +40,7 @@
         
         _backgroundImageView.alpha = 0.0;
         _backgroundImageView.contentMode = UIViewContentModeScaleToFill;
+        _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _backgroundImageView.backgroundColor = [UIColor clearColor];
 
         [self addSubview: _backgroundImageView];
@@ -48,7 +49,9 @@
         
         _backgroundGlassView.alpha = 0.0;
         _backgroundGlassView.backgroundColor = kDKBlurredBackgroundDefaultGlassColor;
-                
+        _backgroundGlassView.contentMode = UIViewContentModeScaleToFill;
+        _backgroundGlassView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
         [self addSubview: _backgroundGlassView];
     }
     return self;
